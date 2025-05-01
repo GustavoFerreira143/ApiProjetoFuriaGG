@@ -66,6 +66,7 @@ model = genai.GenerativeModel("gemini-1.5-flash", generation_config=generation_c
 
 # Flask app
 app = Flask(__name__)
+
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'imgs')
 CORS(app, supports_credentials=True, origins=["https://localhost:5173", "https://localhost:5174"])
 limiter = Limiter(
@@ -859,9 +860,9 @@ def FuncaoColetaDadosGrafico():
         return jsonify({"erro": str(e)}), 500
 
 
-if __name__ == '__main__':
-    app.run(debug=True,host='localhost',
-            port=5000,
-            ssl_context=('./cert/cert.pem', './cert/key.pem'))
+#if __name__ == '__main__':
+#   app.run(debug=True,host='localhost',
+#            port=5000,
+#            ssl_context=('./cert/cert.pem', './cert/key.pem'))
 
 
