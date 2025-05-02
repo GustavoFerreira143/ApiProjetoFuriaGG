@@ -1,14 +1,14 @@
 CREATE DATABASE PesquisaFuria;
 USE PesquisaFuria;
 
-CREATE TABLE tokenUser(
+CREATE TABLE tokenuser(
     id_token INT PRIMARY KEY AUTO_INCREMENT,
     token CHAR(5) NOT NULL,
     email_ref VARCHAR(255) NOT NULL,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE fansFuria (
+CREATE TABLE fansfuria (
     id_fa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(150) NOT NULL,
     estado CHAR(2) NOT NULL,
@@ -27,14 +27,14 @@ CREATE TABLE fansFuria (
     vizualizado BOOL DEFAULT FALSE
 );
 
-CREATE TABLE JogosFavoritos(
+CREATE TABLE jogosfavoritos(
     id_jogo INT PRIMARY KEY AUTO_INCREMENT,
     id_fa INT NOT NULL,
     nomeJogo VARCHAR(50),
     FOREIGN KEY (id_fa) REFERENCES fansFuria(id_fa) ON DELETE CASCADE
 );
 
-CREATE TABLE FuncionariosFuria(
+CREATE TABLE funcionariosfuria(
     id_func INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
@@ -44,7 +44,7 @@ CREATE TABLE FuncionariosFuria(
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE NoticiasFuria(
+CREATE TABLE noticiasfuria(
     id_noticia INT AUTO_INCREMENT PRIMARY KEY,
     img_noticia VARCHAR(255),
     texto_noticia TEXT NOT NULL,

@@ -24,7 +24,7 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
 
         # Primeiro, verificar se o email já existe
         email = dados_usuario['email']
-        cursor.execute("SELECT id_fa FROM fansFuria WHERE email = %s", (email,))
+        cursor.execute("SELECT id_fa FROM fansfuria WHERE email = %s", (email,))
         resultado = cursor.fetchone()
 
         if resultado:
@@ -32,7 +32,7 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
             id_fa = resultado[0]
             idade = dados_usuario['idade']
             query_update = """
-                UPDATE fansFuria SET
+                UPDATE fansfuria SET
                     nome = %s,
                     estado = %s,
                     redeSocial = %s,
@@ -67,11 +67,11 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
             conn.commit()
 
             # Atualizar JogosFavoritos: Deletar antigos e inserir novos
-            cursor.execute("DELETE FROM JogosFavoritos WHERE id_fa = %s", (id_fa,))
+            cursor.execute("DELETE FROM jogosfavoritos WHERE id_fa = %s", (id_fa,))
             for jogo in dados_usuario['compsPreferidos']:
                 if jogo.strip():  
                     cursor.execute(
-                        "INSERT INTO JogosFavoritos (id_fa, nomeJogo) VALUES (%s, %s)",
+                        "INSERT INTO jogosfavoritos (id_fa, nomeJogo) VALUES (%s, %s)",
                         (id_fa, jogo)
                     )
             conn.commit()
@@ -80,7 +80,7 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
         else:
             # Usuário não existe - Inserir novo
             query_insert = """
-                INSERT INTO fansFuria (
+                INSERT INTO fansfuria (
                     nome, estado, email, redeSocial, userRede,
                     interesseEmComp, membroFavorito, interesseCatalogo,
                     modeloInteresse, estiloSugestao, mensagem, receberPromo, idade
@@ -111,7 +111,7 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
             for jogo in dados_usuario['compsPreferidos']:
                 if jogo.strip(): 
                     cursor.execute(
-                        "INSERT INTO JogosFavoritos (id_fa, nomeJogo) VALUES (%s, %s)",
+                        "INSERT INTO jogosfavoritos (id_fa, nomeJogo) VALUES (%s, %s)",
                         (id_fa, jogo)
                     )
             conn.commit()

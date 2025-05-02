@@ -27,7 +27,7 @@ def obter_usuarios_por_estado():
     try:
         cursor.execute("""
             SELECT estado, COUNT(*) AS quantidade
-            FROM fansFuria
+            FROM fansfuria
             GROUP BY estado
             ORDER BY quantidade DESC;
         """)
@@ -101,7 +101,7 @@ def obter_interesse_em_comp():
             SELECT 
                 interesseEmComp,
                 COUNT(*) AS quantidade
-            FROM fansFuria
+            FROM fansfuria
             GROUP BY interesseEmComp;
         """)
         resultados = cursor.fetchall()
@@ -133,7 +133,7 @@ def obter_interesse_em_catalogo():
             SELECT 
                 interesseCatalogo,
                 COUNT(*) AS quantidade
-            FROM fansFuria
+            FROM fansfuria
             GROUP BY interesseCatalogo;
         """)
         resultados = cursor.fetchall()
@@ -165,7 +165,7 @@ def obter_fans_receber_promocoes():
             SELECT 
                 receberPromo,
                 COUNT(*) AS quantidade
-            FROM fansFuria
+            FROM fansfuria
             GROUP BY receberPromo;
         """)
         resultados = cursor.fetchall()
@@ -197,7 +197,7 @@ def obter_fans_por_rede_social():
             SELECT 
                 redeSocial,
                 COUNT(*) AS quantidade
-            FROM fansFuria
+            FROM fansfuria
             GROUP BY redeSocial;
         """)
         resultados = cursor.fetchall()
@@ -235,7 +235,7 @@ def obter_rank_jogos_mais_amados():
             SELECT 
                 nomeJogo,
                 COUNT(*) AS quantidade
-            FROM JogosFavoritos
+            FROM jogosfavoritos
             GROUP BY nomeJogo;
         """)
         resultados = cursor.fetchall()

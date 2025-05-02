@@ -30,7 +30,7 @@ def obter_todos_usuarios(filtro=None, pagina=0):
 
         if filtro:
             query = """
-                SELECT * FROM FuncionariosFuria
+                SELECT * FROM funcionariosfuria
                 WHERE nome LIKE %s OR email LIKE %s
                 ORDER BY id_func DESC
                 LIMIT %s OFFSET %s
@@ -39,7 +39,7 @@ def obter_todos_usuarios(filtro=None, pagina=0):
             cursor.execute(query, (like_filtro, like_filtro, limite, offset))
         else:
             query = """
-                SELECT * FROM FuncionariosFuria
+                SELECT * FROM funcionariosfuria
                 ORDER BY id_func DESC
                 LIMIT %s OFFSET %s
             """
