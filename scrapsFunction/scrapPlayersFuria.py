@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
 
-def obter_dados_playwright(url):
+def obter_dados_plyers(url):
     jogadores_furia = []
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
