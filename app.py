@@ -571,9 +571,15 @@ def VerificaLogado():
 @app.route('/func/conferelogin/logout', methods=['POST'])
 def logout():
     response = make_response(jsonify({'message': 'Logout efetuado'}))
-    response.set_cookie('token_func', '', expires=0)
+    response.set_cookie(
+        'token_func',
+        '',
+        expires=0,
+        httponly=True,
+        secure=True,         
+        samesite='None'   
+    )
     return response
-
 #----------------------------------------------------------------------------------------------Cria Novo User
 
 
