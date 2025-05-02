@@ -34,7 +34,7 @@ def recebe_noticias():
             texto = item['texto_noticia'] or 'Sem Texto Anexado'
             id = item['id_noticia']
             # Concatena o caminho público
-            imagem_url = f"https://localhost:5000/imgs/{imagem}"
+            imagem_url = f"https://web-production-7ea7.up.railway.app/imgs/{imagem}"
 
             noticias_formatadas.append({
                 'imagem': imagem_url,
