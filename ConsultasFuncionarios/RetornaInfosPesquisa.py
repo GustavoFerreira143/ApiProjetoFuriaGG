@@ -97,7 +97,6 @@ def retornaUsers(filtros=None, pagina=0):
                 })
 
         resultado_final = list(usuarios.values())
-        print(resultado_final)
         return resultado_final, 200
 
     except mysql.connector.Error as err:
