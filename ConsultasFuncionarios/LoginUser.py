@@ -55,7 +55,8 @@ def autenticar_usuario(email, senha):
                 'permissaoUser': permissao_user,
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
             }
-            token = jwt.encode(payload, JWT_SECRET, algorithm='HS256')
+            Token_Hash = os.getenv('JWT_SECRET')
+            token = jwt.encode(payload, Token_Hash , algorithm='HS256')
 
             return True, 200, {
                 'token': token,
