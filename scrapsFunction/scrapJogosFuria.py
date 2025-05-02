@@ -62,7 +62,6 @@ def coletaJogosKingsLeague():
 
         jogos_json = json.dumps(jogos, indent=4, ensure_ascii=False)
 
-        print(jogos_json)
 
     except Exception as e:
         return (f"Ocorreu um erro")
@@ -111,8 +110,7 @@ def coletaEscalacao():
         return jogos
 
         jogos_json = json.dumps(jogos, indent=4, ensure_ascii=False)
-
-        print(jogos_json)
+        
 
     except Exception as e:
         return (f"Ocorreu um erro")

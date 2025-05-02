@@ -150,7 +150,6 @@ def enviar_token_email(email_usuario):
                 server.starttls()
                 server.login(os.getenv('EMAIL_REMETENTE'), os.getenv('EMAIL_SENHA'))
                 server.sendmail(msg['From'], msg['To'], msg.as_string())
-                print("E-mail enviado com sucesso!")
 
         except Exception as e:
             print(f"Erro ao enviar e-mail: {e}")
