@@ -6,6 +6,7 @@ import os
 load_dotenv()
 
 DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')  # <- adiciona a porta
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_NAME = os.getenv('DB_NAME')
@@ -15,6 +16,7 @@ def ConfirmaDadosUser(id_token, token, email_ref):
         # Conexão com o banco de dados
         conn = mysql.connector.connect(
             host=DB_HOST,
+            port=int(DB_PORT) if DB_PORT else 3306,  # porta padrão 3306 se não definida
             user=DB_USER,
             password=DB_PASSWORD,
             database=DB_NAME
