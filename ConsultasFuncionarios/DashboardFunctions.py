@@ -68,7 +68,7 @@ def obter_distribuicao_idades():
                     ELSE '60+'
                 END AS faixa_etaria,
                 COUNT(*) AS quantidade
-            FROM fansFuria
+            FROM fansfuria
             GROUP BY faixa_etaria
             ORDER BY faixa_etaria;
         """)
