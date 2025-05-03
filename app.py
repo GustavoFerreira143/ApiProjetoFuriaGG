@@ -604,8 +604,8 @@ def RecebePesquisaUser():
     estado = data.get('estado', '')
     if estado and len(estado) != 2:
         return jsonify({'error': 'Erro no campo estado: Deve conter exatamente 2 caracteres.'}), 400
-    if estado and not estado.isupper():
-        return jsonify({'error': 'Erro no campo estado: Deve ser em letras maiúsculas.'}), 400
+    if estado:
+        estado = estado.upper()
 
     # Validação dos campos opcionais
     if not data.get('interesseCompFuria', False):
