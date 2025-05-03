@@ -63,7 +63,7 @@
 </li>
 <h2>Como deve ser Feito para Efetuar a Integração do Código?</h2>
 <p>
-  Para efetuar a integração do Código foi o pip install de todos os itens presentes no arquivo requirements.txt, o mesmo está presente no repositório e por fim deve ser retirado os comentarios nas linhas 869,870,871 e 872 do arquivo app.py e então ser rodado o comando python app.py somente caso o terminal já esteja aberto na pasta com o arquivo presente, nele foi inserido um certificado de teste para https com a finalidade de fazer a criação de cookie seguro em cross-site é recomendado que o mesmo seja mantido.
+  Para efetuar a integração do Código foi o pip install de todos os itens presentes no arquivo requirements.txt com o código pip install -r requirements ele fará o dowload automaticamente, o mesmo está presente no repositório e por fim deve ser retirado os comentarios nas linhas 869,870,871 e 872 do arquivo app.py e então ser rodado o comando python app.py somente caso o terminal já esteja aberto na pasta com o arquivo presente, nele foi inserido um certificado de teste para https com a finalidade de fazer a criação de cookie seguro em cross-site é recomendado que o mesmo seja mantido.
 </p>
 <p>OBS:o seguinte item gunicorn foi utilizado para uso da aplicação corretamente no deploy publico e por isso em testes locais o mesmo é opcional, caso for feito o uso do mesmo o comando está presente em Procfile, mas o comentarios das linhas 869,870,871 e 872 devem ser mantidas nesse caso</p>
 <h3>
