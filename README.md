@@ -145,47 +145,47 @@
     |
     |_linhas 161 até 179 <- criação da rota <strong> /estaAoVivo </strong> que é responsavel por chamar a função coletaAoVivo que retorna se a furia está ao vivo ou não no kings league e retorna as informações ao cliente
     |
-    |_linhas 185 até 408 <- criação da rota <strong> /conversas </strong> que recebe a mensagem do usuario para a IA, utiliza a função limpar_mensagem presente na linha 84 e então cria o prompt de configuração da IA com as informações que a mesma deve saber sobre a furia e datalhes
+    |_linhas 185 até 579 <- criação da rota <strong> /conversas </strong> que recebe a mensagem do usuario para a IA, utiliza a função limpar_mensagem presente na linha 84 e então cria o prompt de configuração da IA com as informações que a mesma deve saber sobre a furia e datalhes
     |                       a partir da linha 283 é gerado a resposta para o usuário com base nos conhecimentos da IA e por pré configuração caso seja detectado perguntas especificas a mesma retornas valores pré definidos para disparar os if e elifs especificos   
     |                       todos os ifs exeto os referente ao Kings League utilizam a função obter_dados_player com sua respectiva URL para retornar os dados solicitados com precisão e então por final retorna a resposta personalizada ao usuário
     |
-    |_linhas 416 até 481 <- criação de rota <strong> /feedback </strong> essa rota é responsavel pelo recebimento do feedback do usuário completo junto com token de confirmação e dados para dar proceguimento ao salvamento no banco de dados, de inicio ela faz o envio do token, id 
+    |_linhas 587 até 652 <- criação de rota <strong> /feedback </strong> essa rota é responsavel pelo recebimento do feedback do usuário completo junto com token de confirmação e dados para dar proceguimento ao salvamento no banco de dados, de inicio ela faz o envio do token, id 
     |                        e email para a função ConfirmaDadosUser que verifica se as informações batem exatamente com a salvas no banco e então da proceguimento depois efetua a verificação de todas as variaveis recebidas formatando da forma esperada para evitar erros e faldes
     |                        caso não seja encontrado nenhuma irregularidade faz uma verificação com IA dos dados para verificação se não há uso de discursos de ódio fraudes e linguagem de baixo calão nos envios e então a mesma retorna valores pré defindos para OK para dados validos e ENCONTRADO para dados irregulares
     |                        se tudo OK faz chama a função cadastrar_ou_atualizar que cadastra novos usuário ou atualiza caso já existentes com base em data recebido
     |    
-    |_linhas 487 até 505 <- é criado a rota /enviaToken essa rota é responsavel pelo envio do token de usuário com base no email recebido e então retorna o id da linha em que o token do email especifico foi armazenado a função de envio e retorno do id é enviar_token_email(email)
+    |_linhas 658 até 676 <- é criado a rota /enviaToken essa rota é responsavel pelo envio do token de usuário com base no email recebido e então retorna o id da linha em que o token do email especifico foi armazenado a função de envio e retorno do id é enviar_token_email(email)
     |
-    |_linhas 513 até 543 <- Criação de rota <strong> /func/conferelogin/login </strong> essa função é especifica para tela de funcionarios, ela recebe dados de email e senha trata os dados e envia para a função autenticar_usuario(email, senha) que por sua vez faz a conferencia de usuário e em caso sucesso retorna o token de usuario, tipo de permissão e se foi sucesso ou não e então o código faz a verificações e retorna o token personalizado por meio de um cookie seguro
+    |_linhas 684 até 714 <- Criação de rota <strong> /func/conferelogin/login </strong> essa função é especifica para tela de funcionarios, ela recebe dados de email e senha trata os dados e envia para a função autenticar_usuario(email, senha) que por sua vez faz a conferencia de usuário e em caso sucesso retorna o token de usuario, tipo de permissão e se foi sucesso ou não e então o código faz a verificações e retorna o token personalizado por meio de um cookie seguro
     |
-    |_linhas 549 até 565 <- Criação de rota <strong> /func/conferelogin/VerificaLogado </strong> que recebe o token de usuário e retorna se o mesmo está logado ou não e se o token é valido
+    |_linhas 720 até 736 <- Criação de rota <strong> /func/conferelogin/VerificaLogado </strong> que recebe o token de usuário e retorna se o mesmo está logado ou não e se o token é valido
     |
-    |_linhas 571 até 582 <- Criação de rota <strong> /func/conferelogin/logout essa função zera a validade atual do token jwt do usuário fazendo o mesmo se tornar inválido e então o mesmo é desvinculado
+    |_linhas 742 até 753 <- Criação de rota <strong> /func/conferelogin/logout essa função zera a validade atual do token jwt do usuário fazendo o mesmo se tornar inválido e então o mesmo é desvinculado
     |
-    |_linhas 586 até 621 <- Criação de rota <strong>/func/insereuserfurioso/user</strong> nesta rota já é iniciado a verificação de token jwt tratadas a partir da linha 105 onde ele verifica se o token existe e se é admin caso seja pega as informações recebidas
+    |_linhas 757 até 792 <- Criação de rota <strong>/func/insereuserfurioso/user</strong> nesta rota já é iniciado a verificação de token jwt tratadas a partir da linha 105 onde ele verifica se o token existe e se é admin caso seja pega as informações recebidas
     |                        pelo usuário valida utilizando a função de validar_input encontradas a partir da linha 84 e então se tudo ok envia para a função inserir_funcionario_furia que faz a inserção dos dados no banco de dados
     |
-    |_linhas 627 até 646 <- Criação de rota <strong>/func/editaUserDados/user</strong> nesta função onde só é autorizado acesso admin ele recebe filtros opcionais e valores referentes ao carregamento de página dinâmica e então chama a função obter_todos_usuarios
+    |_linhas 798 até 817 <- Criação de rota <strong>/func/editaUserDados/user</strong> nesta função onde só é autorizado acesso admin ele recebe filtros opcionais e valores referentes ao carregamento de página dinâmica e então chama a função obter_todos_usuarios
     |                       que faz a busca e retorna todos os funcionarios cadastrados no banco de funcionarios e então os retorna ao usuário.     
     |
-    |_linhas 652 até 671 <- Criação de rota <strong>/func/editaUserDados/enviar</strong> nesta função onde só é autorizado acesso admin ele recebe alteração de dados de usuário e então envia para atualizar_usuario função onde é atualizados todos os dados com base no id recebido
+    |_linhas 823 até 842 <- Criação de rota <strong>/func/editaUserDados/enviar</strong> nesta função onde só é autorizado acesso admin ele recebe alteração de dados de usuário e então envia para atualizar_usuario função onde é atualizados todos os dados com base no id recebido
     |
-    |_linhas 676 até 701 <- Criação de rota <strong>/func/enviaEmailusers/aut</strong> essa função onde só é autorizado acesso com token valido, recebe trata dados recebidos para envio de emails para os cliente e então envia os dados para enviaEmailUsers que envia email para todos os clientes que aceitaram a promoção com base no especificado pelo usuário
+    |_linhas 847 até 872 <- Criação de rota <strong>/func/enviaEmailusers/aut</strong> essa função onde só é autorizado acesso com token valido, recebe trata dados recebidos para envio de emails para os cliente e então envia os dados para enviaEmailUsers que envia email para todos os clientes que aceitaram a promoção com base no especificado pelo usuário
     |
-    |_linhas 706 até 743 <- Criação de rota <strong>/enviafunc/usuario/noticia</strong> essa função onde só é autorizado acesso com token valido, recebe imagem e texto para inserção de nova noticia, é validado o tipo de extenção e se válido envia para a função AdicionaNoticia que salva a imagem em imgs e envia o nome para o banco para futura formatação.
+    |_linhas 877 até 914 <- Criação de rota <strong>/enviafunc/usuario/noticia</strong> essa função onde só é autorizado acesso com token valido, recebe imagem e texto para inserção de nova noticia, é validado o tipo de extenção e se válido envia para a função AdicionaNoticia que salva a imagem em imgs e envia o nome para o banco para futura formatação.
     |
-    |_linhas 749 até 766 <- Criação de rota <strong>/notic/func/encia/delet</strong> essa função onde só é autorizado acesso com token valido, recebe informações de noticia para deletar a mesma do banco, após validar as informações chama a função deletaNoticia
+    |_linhas 920 até 937 <- Criação de rota <strong>/notic/func/encia/delet</strong> essa função onde só é autorizado acesso com token valido, recebe informações de noticia para deletar a mesma do banco, após validar as informações chama a função deletaNoticia
     |                       e então o mesmo é deletado da pasta imgs e do banco de dados
     |
-    |_linhas 772 até 795 <- Criação de rota <strong>/verif/pesquisa/user/rec</strong> essa função onde só é autorizado acesso com token valido, recebe filtros opcionais enviado pelo usuario e informações de pagina para carregamento dinamico da página de vizualização de FeedBack de Usuários, onde essas informações é enviada para a função retornaUsers e então retorna os valores ao usuário.
+    |_linhas 943 até 966 <- Criação de rota <strong>/verif/pesquisa/user/rec</strong> essa função onde só é autorizado acesso com token valido, recebe filtros opcionais enviado pelo usuario e informações de pagina para carregamento dinamico da página de vizualização de FeedBack de Usuários, onde essas informações é enviada para a função retornaUsers e então retorna os valores ao usuário.
     |
-    |_linhas 799 até 819 <- Criação de rota <strong> /atualiz/user/fa/view</strong> essa função onde só é autorizado acesso com token valido, recebe o id do fan para atualizar como visualizado a sua respectiva carterinha de dados, a função de atualização é a altera_vizualizado(id).
+    |_linhas 970 até 990 <- Criação de rota <strong> /atualiz/user/fa/view</strong> essa função onde só é autorizado acesso com token valido, recebe o id do fan para atualizar como visualizado a sua respectiva carterinha de dados, a função de atualização é a altera_vizualizado(id).
     |
-    |_linhas 824 até 840 <- Criação de rota <strong>/rec/dash/views/user</strong> essa função onde só é autorizado acesso com token valido, dispara diversas funções que retornam dados personalizados para inserção em gráficos de rendimento.
+    |_linhas 995 até 1011 <- Criação de rota <strong>/rec/dash/views/user</strong> essa função onde só é autorizado acesso com token valido, dispara diversas funções que retornam dados personalizados para inserção em gráficos de rendimento.
     |
-    |_linhas 844 até 867 <- Criação de rota <strong>/rec/gera/views/grafic</strong> essa função onde só é autorizado usuarios com token admin faz o retorno de pesquisas personalizadas para criação de tabela dinâmica instantanea a função que recebe os dados para inserir na tabela é a gerar_dados_personalizados_grafico
+    |_linhas 1015 até 1038 <- Criação de rota <strong>/rec/gera/views/grafic</strong> essa função onde só é autorizado usuarios com token admin faz o retorno de pesquisas personalizadas para criação de tabela dinâmica instantanea a função que recebe os dados para inserir na tabela é a gerar_dados_personalizados_grafico
     |
-    |_linhas 870 até 873 <-função main disparada caso queira iniciar o servidor local sem gunicorn. 
+    |_linhas 1041 até 1044 <-função main disparada caso queira iniciar o servidor local sem gunicorn. 
 </pre>
 <h1 align="center">Por Fim Aproveite</h1>
 
