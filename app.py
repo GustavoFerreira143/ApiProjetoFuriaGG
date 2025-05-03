@@ -646,7 +646,7 @@ def RecebePesquisaUser():
 
 
         else:
-            return jsonify({"Error": "Alguma Informação não muito legal foi encontrada.Corrija e Tente Novamente"}), 400
+            return jsonify({"Error": "Alguma Informação não muito legal foi encontrado.Corrija e Tente Novamente"}), 400
 
     except Exception as e:
         return jsonify({"Error": "Houve um erro Interno"}), 500
