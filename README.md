@@ -65,6 +65,58 @@
 <p>
   Para efetuar a integração do Código foi o pip install de todos os itens presentes no arquivo requirements.txt com o código pip install -r requirements ele fará o dowload automaticamente, o mesmo está presente no repositório e por fim deve ser retirado os comentarios nas linhas 869,870,871 e 872 do arquivo app.py e então ser rodado o comando python app.py somente caso o terminal já esteja aberto na pasta com o arquivo presente, nele foi inserido um certificado de teste para https com a finalidade de fazer a criação de cookie seguro em cross-site é recomendado que o mesmo seja mantido.
 </p>
+<h3>
+IMPORTANTE !!!
+</h3>
+<p>
+  No projeto a uso de váriaveis de ambiente para manter dados privados em segurança 
+</p>
+<p>
+  As Variaveis são as Seguintes
+<br>
+GEMINI_API_KEY <br>
+EMAIL_REMETENTE <br>
+EMAIL_SENHA <br>
+DB_HOST <br>
+DB_USER <br>
+DB_PORT <br>
+DB_PASSWORD <br>
+DB_NAME <br>
+JWT_SECRET <br>
+KINGSLEAGUE_TWITCH <br>
+FURIA_INSTAGRAM <br>
+FURIA_YOUTUBE <br>
+FURIA_FACEBOOK <br>
+FURIA_TWITTER <br>
+FURIA_FOOTBALL_INSTAGRAM <br>
+FURIA_FOOTBALL_YOUTUBE <br>
+KINGSLEAGUE_SITE <br>
+FURIA_RED_RAM_INSTAGRAM <br>
+FURIA_LOL_INSTAGRAM <br>
+FURIA_LOL_YOUTUBE <br>
+FURIA_VALORANT_INSTAGRAM <br>
+FURIA_VALORANT_YOUTUBE <br>
+FURIA_R6_INSTAGRAM <br>
+FURIA_R6_YOUTUBE <br>
+FURIA_CSGO_YOUTUBE <br>
+FURIA_TWITCH <br>
+FURIA_DISCORD <br>
+FURIA_STEAM_GROUP <br>
+FURIA_APPAREL_INSTAGRAM <br>
+FURIA_ECOMMERCE_SITE <br>
+FURIA_NEWS_INSTAGRAM <br>
+FURIA_DEFAULT_INSTAGRAM <br>
+CSGO_MASCULINO_URL <br>
+CSGO_FEMININO_URL <br>
+PUBG_URLLOL_URL <br>
+R6_URL <br>
+ROCKET_LEAGUE_URL <br>
+VALORANT_MASCULINO_URL <br>
+VALORANT_FEMININO_URL <br>
+APEX_URL <br>
+PUBG_MOBILE_URL <br>
+TIMES_FURIA_KINGS_LEAGUE <br>
+</p>
 <p>OBS:o seguinte item gunicorn foi utilizado para uso da aplicação corretamente no deploy publico e por isso em testes locais o mesmo é opcional, caso for feito o uso do mesmo o comando está presente em Procfile, mas o comentarios das linhas 869,870,871 e 872 devem ser mantidas nesse caso</p>
 <h3>
   Passo a Passo:
