@@ -69,7 +69,7 @@
 IMPORTANTE !!!
 </h3>
 <p>
-  No projeto a uso de váriaveis de ambiente para manter dados privados em segurança 
+  No projeto há uso de váriaveis de ambiente para manter dados privados em segurança 
 </p>
 <p>
   As Variaveis são as Seguintes
