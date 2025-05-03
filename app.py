@@ -592,18 +592,18 @@ def RecebePesquisaUser():
     dadosExist = ConfirmaDadosUser(data.get('id'), token_email, data.get('email'))
 
     if not dadosExist:
-        return jsonify({'error': f'Token Incorreto Digitado'}), 400
+        return jsonify({'Error': f'Token Incorreto Digitado'}), 400
 
     # Validação dos campos obrigatórios
     for campo in ['nome', 'apelido', 'redeSocial', 'mensagem','estado','email','idade']:
         valido, erro = validar_input(data.get(campo, ''))
         if not valido:
-            return jsonify({'error': f'Erro no campo {campo}: {erro}'}), 400
+            return jsonify({'Error': f'Erro no campo {campo}: {erro}'}), 400
 
 
     estado = data.get('estado', '')
     if estado and len(estado) != 2:
-        return jsonify({'error': 'Erro no campo estado: Deve conter exatamente 2 caracteres.'}), 400
+        return jsonify({'Error': 'Erro no campo estado: Deve conter exatamente 2 caracteres.'}), 400
     if estado:
         estado = estado.upper()
 
@@ -619,13 +619,13 @@ def RecebePesquisaUser():
         data['estiloSugestao'] = ''
 
     if 'aceite' not in data:
-        return jsonify({'error': 'Campo aceite é obrigatório.'}), 400
+        return jsonify({'Error': 'Campo aceite é obrigatório.'}), 400
 
     if data.get('compsPreferidos') and not isinstance(data['compsPreferidos'], list):
-        return jsonify({'error': 'Erro no campo compsPreferidos: Deve ser uma lista.'}), 400
+        return jsonify({'Error': 'Erro no campo compsPreferidos: Deve ser uma lista.'}), 400
 
     if data.get('membroFavorito') and not isinstance(data['membroFavorito'], str):
-        return jsonify({'error': 'Erro no campo membroFavorito: Deve ser uma string.'}), 400
+        return jsonify({'Error': 'Erro no campo membroFavorito: Deve ser uma string.'}), 400
 
     prompt_base = (
         "Você é uma IA com o objetivo de evitar fraudes e recebimento de conteúdos inapropriados. "
@@ -642,14 +642,14 @@ def RecebePesquisaUser():
             if cadastraUsario:
                 return jsonify({'message': 'Feedback enviado com sucesso!'}), 200
             else:
-                return jsonify({"Erro": "Cadastro de Dados do usuario Falhou"}), 500
+                return jsonify({"Error": "Cadastro de Dados do usuario Falhou"}), 500
 
 
         else:
-            return jsonify({"Erro": "Alguma Informação não muito legal foi encontrada.Corrija e Tente Novamente"}), 400
+            return jsonify({"Error": "Alguma Informação não muito legal foi encontrada.Corrija e Tente Novamente"}), 400
 
     except Exception as e:
-        return jsonify({"Erro": "Houve um erro Interno"}), 500
+        return jsonify({"Error": "Houve um erro Interno"}), 500
 
 
 #------------------------------------------------------------------------------------Envia Token para Email
