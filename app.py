@@ -630,12 +630,15 @@ def RecebePesquisaUser():
         return jsonify({'Error': 'Erro no campo membroFavorito: Deve ser uma string.'}), 400
 
     prompt_base = (
-        "Você é uma IA com o objetivo de evitar fraudes e recebimento de conteúdos inapropriados. "
-        "Você deve verificar os dados do json que será lhe enviado e buscar por palavras consideradas de baixo calão ou desrespeitosas "
-        "scripts e dados fraudulentos, como estados inexistentes e e-mails formatados incorretamente"
-        "Analise os dados de maneira cuidadosa e retorne 'OK' caso não seja encontrado nada suspeito e, "
-        f"caso contrário, retorne 'ENCONTRADO'.\n\nDados Recebidos: {json.dumps(data)}\n\nResposta:"
+        "Você é uma IA com o objetivo de evitar fraudes e o recebimento de conteúdos realmente inapropriados. "
+        "Sua tarefa é analisar os dados do JSON enviado e identificar apenas conteúdos ofensivos, desrespeitosos ou com xingamentos direcionados à empresa FURIA ou a terceiros. "
+        "Elogios ou linguagem informal positiva, mesmo que coloquial (como 'empresa muito foda'), não devem ser considerados ofensivos. "
+        "Você também deve verificar se há scripts ou dados fraudulentos, como estados inexistentes e e-mails formatados incorretamente. "
+        "Analise os dados com cautela e senso de contexto. Retorne 'OK' se não encontrar nada inadequado ou suspeito, "
+        "e retorne 'ENCONTRADO' se houver conteúdo ofensivo, desrespeitoso ou informações fraudulentas.\n\n"
+        f"Dados Recebidos: {json.dumps(data)}\n\nResposta:"
     )
+
     try:
         resposta = model.generate_content(prompt_base)
         resposta_texto = resposta.text.strip()
