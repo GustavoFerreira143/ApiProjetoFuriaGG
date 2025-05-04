@@ -29,11 +29,6 @@ def retornaUsers(filtros=None, pagina=0):
         limite = 10
         offset = pagina * limite
 
-        base_query = """
-            SELECT f.*, j.id_jogo, j.nomeJogo
-            FROM fansfuria f
-            LEFT JOIN jogosfavoritos j ON f.id_fa = j.id_fa
-        """
         where_clauses = []
         params = []
 
@@ -70,11 +65,23 @@ def retornaUsers(filtros=None, pagina=0):
                 where_clauses.append("f.vizualizado = %s")
                 params.append(filtros['somenteVisualizado'] == 'true')
 
+        # Montagem da subquery
+        subquery = """
+            SELECT * FROM fansfuria f
+        """
         if where_clauses:
-            base_query += " WHERE " + " AND ".join(where_clauses)
+            subquery += " WHERE " + " AND ".join(where_clauses)
+        subquery += " ORDER BY f.id_fa DESC LIMIT %s OFFSET %s"
 
-        base_query += " ORDER BY f.id_fa DESC LIMIT %s OFFSET %s"
+        # Parametros do limit/offset
         params.extend([limite, offset])
+
+        # Query principal com LEFT JOIN
+        base_query = f"""
+            SELECT f.*, j.id_jogo, j.nomeJogo
+            FROM ({subquery}) AS f
+            LEFT JOIN jogosfavoritos j ON f.id_fa = j.id_fa
+        """
 
         cursor.execute(base_query, tuple(params))
         resultados = cursor.fetchall()
