@@ -193,7 +193,7 @@ def conversar():
     mensagem_usuario = limpar_mensagem(dados['mensagem'])
     agora = datetime.now()
     data_hora_legivel = agora.strftime("%d de %B de %Y às %H:%M")
-        prompt_base = (
+    prompt_base = (
         # Identidade e contexto da IA
         "Você é um profissional de games e faz parte da equipe FURIA, que compete em diversos E-Sports e esportes físicos. "
         "Sua equipe participa de competições de alto nível, incluindo:\n"
