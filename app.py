@@ -2,7 +2,7 @@ import json
 import re
 import os
 from werkzeug.utils import secure_filename
-
+from datetime import datetime
 from flask import Flask, request, jsonify, make_response, g, send_from_directory
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -191,7 +191,8 @@ def conversar():
         return jsonify({"erro": "Objeto inválido, esperado: { 'mensagem': 'texto aqui' }"}), 400
 
     mensagem_usuario = limpar_mensagem(dados['mensagem'])
-
+    agora = datetime.now()
+    data_hora_legivel = agora.strftime("%d de %B de %Y às %H:%M")
     prompt_base = (
         # Identidade e contexto da IA
         "Você é um profissional de games e faz parte da equipe FURIA, que compete em diversos E-Sports e esportes físicos. "
@@ -224,7 +225,7 @@ def conversar():
         # Direcionamento das respostas
         "Sempre responda com base nas informações da FURIA.\n"
         "Se a pergunta for sobre escalação atual, utilize os dados abaixo como resposta:\n"
-        
+
         "- CS:GO Masculino →\n"
         "MOLODOY\n"
         "YEKINDAR\n"
@@ -245,9 +246,9 @@ def conversar():
         "Izaa        | Izabella Bieberbach Galle\n"
         "Kaah        | Karina Takahashi\n"
         "Jnt         | Jhonatan Silva Moura | Treinador\n"
-        
+
         "- PUBG Mobile → ^PUBGMOBA^\n"
-        
+
         "- PUBG → "
         "Guizeraa    | Guilherme Barbosa\n"
         "Haven       | Erick Aguiar\n"
@@ -258,7 +259,7 @@ def conversar():
         "zkrakeN     | Leandro Gomes\n"
         "possa       | Francisco Possamai dos Santos\n"
         "Chuckpira   | Guilherme Stolf\n"
-        
+
         "- LOL → ^LOL^"
         "GUIGO       | Guilherme Ruiz\n"
         "Tatu        | Pedro Seixas\n"
@@ -269,7 +270,7 @@ def conversar():
         "Ranger      | Filipe Brombilla\n"
         "Thinkcard   | Thomas Slotkin  | Treinador\n"
         "Furyz       | Erick Susin     | Treinador\n"
-        
+
         "- Rainbow Six →"
         "kheyze      | Jogador\n"
         "Jv92        | Jogador\n"
@@ -278,7 +279,7 @@ def conversar():
         "nade        | Jogador\n"
         "Vittzzz     | Jogador\n"
         "Igoorctg    | Treinador\n"
-        
+
         "- Rocket League →"
         "drufinho    | Arthur Langsch Miguel\n"
         "Lostt       | Gabriel Souza Buzon\n"
@@ -307,7 +308,7 @@ def conversar():
         "Keoon       | Keon Berghout\n"
         "PVPX        | Jamison Moore | Treinador\n"
 
-        "- Kings League – placares passados → "
+        "- Kings League – placares e partidas → "
         "29/03 - 18:00 | Dendele FC | 2 : 6 | Furia FC\n"
         "31/03 - 19:00 | Furia FC | 4 : 2 | FC Real Elite\n"
         "07/04 - 21:00 | Furia FC | 5 : 0 | Nyvelados FC\n"
@@ -315,9 +316,7 @@ def conversar():
         "21/04 - 20:00 | G3X FC | 7 : 9 | Furia FC\n"
         "26/04 - 17:00 | Desimpedidos Goti | 5 : 3 | Furia FC\n"
         "28/04 - 21:00 | Capim FC | 2 : 4 | Furia FC\n"
-        
-        "- Kings League – partidas futuras → "
-        "03/05 - 19:00 | Funkbol Clube | - : - | Furia FC\n"
+        "03/05 - 19:00 | Funkbol Clube | 3 : 4 | Furia FC\n"
         "05/05 - 17:00 | Fluxo FC | - : - | Furia FC\n"
         
         "- Kings League – equipe atual → "
@@ -339,10 +338,10 @@ def conversar():
         "Andrey Batata | Meia\n"
 
         "- Kings League – ao vivo agora → ^AO^\n"
-        
+
         "Se a pergunta for sobre ultimos resultados da furia, utilize os dados abaixo para resposta:\n"
         "- CS:GO Masculino ->"
-        "Data        | Oponente          	     | Pontuação      "    
+        "Data        | Oponente          	     | Pontuação      "
         "------------|---------------------------|-----------------"
         "09/04/2025  | The Mongolz              | Perdido  0 : 2\n"
         "08/04/2025  | Virtus.pro               | Perdido  0 : 2\n"
@@ -396,28 +395,28 @@ def conversar():
         "Feb 6, 2025   | FURIA         | 2 : 0 | Melhor de 3 | Finished\n"
         "Feb 5, 2025   | Team Secret   | 2 : 0 | Melhor de 3 | Finished\n"
         "Feb 3, 2025   | CAG OSAKA     | 2 : 0 | Melhor de 3 | Finished\n"
-        
-        "Se a pergunta for sobre proximos jogos da furia, utilize os dados abaixo para a resposta"
+
+        "Se a pergunta for sobre proximos jogos da furia, utilize os dados abaixo para a resposta\n"
         "- CS:GO Masculino -> "
         "Data	Oponente	Evento\n"
-        "10/05/2025	The Mongolz	PGL Astana 2025\n"
+        "10 May 2025	The Mongolz	PGL Astana 2025\n"
         "- CS:GO Feminino -> Não Há partidas Agendadas"
         "-Valorant Masculino e Feminino: não há partidas Agendadas"
-        "-LOL : -> " 
-        "12:00 11/05/2025\n"
+        "-LOL : -> "
+        "11 May 2025 12:00 \n"
         "FURIA X Fluxo W7M\n"
         "- R6 -> "
-        "Maio 10, 2025  | FURIA    | - : - | Melhor de 1 | Upcoming"
+        "May 10, 2025  | FURIA    | - : - | Melhor de 1 | Upcoming\n"
 
         "Caso o usuário não especifique o gênero da equipe, assuma como MASCULINA por padrão, a menos que ele deixe claro o contrário.\n"
         "Se a pergunta for genérica como 'quem joga?', 'quem tá na equipe?' ou 'qual a lineup?', tente inferir o game e use a resposta correspondente.\n\n"
-
+        f"Considere que a data atual é {data_hora_legivel}. Verifique se o jogo mencionado no prompt já aconteceu ou está marcado para hoje. Se o jogo for hoje, informe que ele está acontecendo agora e envie o link da Twitch da FURIA para o usuário."
+        "Evite utilizar hoje em partidas que ocorreram em outros dias para evitar confusão ao usuário"
         # Instruções técnicas
         "Sempre que for enviar um link, adicione o caractere '&' antes e depois da URL para formatações posteriores.\n"
         "Sempre que for inserir uma quebra de linha utilize ^ na resposta e evite utilizar multiplos *"
         "Nunca fale sobre outras equipes ou marcas fora da FURIA.\n"
         "Tente deixar suas respostas amigáveis, informais, mas bem estruturadas e precisas.\n\n"
-
         # Redes sociais e canais oficiais
         "Canais oficiais para acompanhar as equipes e novidades da FURIA:\n"
         f"- Transmissão Kings League: &{os.getenv('KINGSLEAGUE_TWITCH')}&\n"
@@ -565,6 +564,7 @@ def conversar():
             resposta_texto = f"Escalação do time atual :^{saida_string}^ Para mais infos só dar um salve!!"
 
 #------------------------------------Caso seja busca Furia Ao Vivo no Kings League-------------------------
+
 
         elif "^AO^" in resposta_texto:
             jogadores = coletaAoVivo()
