@@ -26,7 +26,7 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
         email = dados_usuario['email']
         cursor.execute("SELECT id_fa FROM fansfuria WHERE email = %s", (email,))
         resultado = cursor.fetchone()
-
+        estado = dados_usuario['estado'].upper()
         if resultado:
             # Usuário existe - Atualizar os dados
             id_fa = resultado[0]
@@ -49,7 +49,7 @@ def cadastrar_ou_atualizar_usuario(dados_usuario):
             """
             valores_update = (
                 dados_usuario['nome'],
-                dados_usuario['estado'],
+                estado,
                 dados_usuario['redeSocial'],
                 dados_usuario['apelido'],
                 dados_usuario['interesseCompFuria'],
