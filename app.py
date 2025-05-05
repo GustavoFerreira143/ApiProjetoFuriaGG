@@ -414,6 +414,7 @@ def conversar():
         "R6 -> https://www.ubisoft.com/en-us/esports/rainbow-six/siege/team/9/overview\n"
         "Valorant -> https://www.vlr.gg/team/2406/furia/ \n"
         "CS: GO -> https://draft5.gg/equipe/330-FURIA \n"
+        f"Sempre leve em consideração a data atual que é {data_hora_legivel} para informar caso a furia esteja tendo um jogo em tempo real ou o mesmo já ocorreu\n"
         "Caso o usuário não especifique o gênero da equipe, assuma como MASCULINA por padrão, a menos que ele deixe claro o contrário.\n"
         "Se a pergunta for genérica como 'quem joga?', 'quem tá na equipe?' ou 'qual a lineup?', tente inferir o game e use a resposta correspondente.\n\n"
         # Instruções técnicas
