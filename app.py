@@ -308,7 +308,7 @@ def conversar():
         "Keoon       | Keon Berghout\n"
         "PVPX        | Jamison Moore | Treinador\n"
 
-        "- Kings League – placares passados → "
+        "- Kings League – partidas → "
         "29/03 - 18:00 | Dendele FC | 2 : 6 | Furia FC\n"
         "31/03 - 19:00 | Furia FC | 4 : 2 | FC Real Elite\n"
         "07/04 - 21:00 | Furia FC | 5 : 0 | Nyvelados FC\n"
@@ -317,8 +317,7 @@ def conversar():
         "26/04 - 17:00 | Desimpedidos Goti | 5 : 3 | Furia FC\n"
         "28/04 - 21:00 | Capim FC | 2 : 4 | Furia FC\n"
         
-        "- Kings League – partidas futuras → "
-        "03/05 - 19:00 | Funkbol Clube | - : - | Furia FC\n"
+        "03/05 - 19:00 | Funkbol Clube | 3 : 4 | Furia FC\n"
         "05/05 - 17:00 | Fluxo FC | - : - | Furia FC\n"
         
         "- Kings League – equipe atual → "
