@@ -44,7 +44,7 @@ def enviaEmailUsers(assunto, mensagem1, linkimg, mensagem2, destino):
         elif destino == 'games':
             query = """
                 SELECT email FROM fansfuria
-                WHERE receberPromo = TRUE AND interesseEmCompo = TRUE
+                WHERE receberPromo = TRUE AND interesseEmComp = TRUE
             """
         else:
             raise ValueError("Destino inválido")
