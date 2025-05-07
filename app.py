@@ -141,7 +141,7 @@ def uploaded_file(filename):
 #------------------------------------------------------------------Função para Receber Noticas
 
 @app.route('/coletaNoticias', methods=['GET'])
-@limiter.limit("7 per minute")
+@limiter.limit("20 per minute")
 def enviaNoticiasUsuario():
     try:
         resultado = recebe_noticias()
