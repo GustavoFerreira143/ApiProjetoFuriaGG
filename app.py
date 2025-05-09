@@ -68,7 +68,7 @@ model = genai.GenerativeModel("gemini-1.5-flash", generation_config=generation_c
 app = Flask(__name__)
 
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'imgs')
-CORS(app, supports_credentials=True, origins=["https://furiasiteclientes.netlify.app", "https://furiasitefuncionarios.netlify.app"])
+CORS(app, supports_credentials=True, origins=["https://furiasiteclientes.netlify.app", "https://furiasitefuncionarios.netlify.app", "app://"])
 limiter = Limiter(
     get_remote_address,
     app=app,
